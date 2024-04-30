@@ -1,0 +1,228 @@
+$ vagrant ssh
+[vagrant@dockernginx ~]$ sudo -i
+[root@dockernginx ~]# systemctl enable docker
+Failed to execute operation: No such file or directory
+[root@dockernginx ~]# yum install -y yum-utils device-mapper-persistent-data lvm2
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.sale-dedic.com
+ * extras: mirror.sale-dedic.com
+ * updates: mirror.corbina.net
+Package yum-utils-1.1.31-54.el7_8.noarch already installed and latest version
+Package device-mapper-persistent-data-0.8.5-3.el7_9.2.x86_64 already installed and latest version
+Package 7:lvm2-2.02.187-6.el7_9.5.x86_64 already installed and latest version
+Nothing to do
+[root@dockernginx ~]# yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+Loaded plugins: fastestmirror
+adding repo from: https://download.docker.com/linux/centos/docker-ce.repo
+grabbing file https://download.docker.com/linux/centos/docker-ce.repo to /etc/yum.repos.d/docker-ce.repo
+repo saved to /etc/yum.repos.d/docker-ce.repo
+[root@dockernginx ~]# yum install docker-ce docker-ce-cli containerd.io
+Loaded plugins: fastestmirror
+Loading mirror speeds from cached hostfile
+ * base: mirror.sale-dedic.com
+ * extras: mirror.sale-dedic.com
+ * updates: mirror.corbina.net
+Resolving Dependencies
+--> Running transaction check
+---> Package containerd.io.x86_64 0:1.6.31-3.1.el7 will be installed
+--> Processing Dependency: container-selinux >= 2:2.74 for package: containerd.io-1.6.31-3.1.el7.x86_64
+---> Package docker-ce.x86_64 3:26.1.0-1.el7 will be installed
+--> Processing Dependency: docker-ce-rootless-extras for package: 3:docker-ce-26.1.0-1.el7.x86_64
+--> Processing Dependency: libcgroup for package: 3:docker-ce-26.1.0-1.el7.x86_64
+---> Package docker-ce-cli.x86_64 1:26.1.0-1.el7 will be installed
+--> Processing Dependency: docker-buildx-plugin for package: 1:docker-ce-cli-26.1.0-1.el7.x86_64
+--> Processing Dependency: docker-compose-plugin for package: 1:docker-ce-cli-26.1.0-1.el7.x86_64
+--> Running transaction check
+---> Package container-selinux.noarch 2:2.119.2-1.911c772.el7_8 will be installed
+--> Processing Dependency: policycoreutils-python for package: 2:container-selinux-2.119.2-1.911c772.el7_8.noarch
+---> Package docker-buildx-plugin.x86_64 0:0.14.0-1.el7 will be installed
+---> Package docker-ce-rootless-extras.x86_64 0:26.1.0-1.el7 will be installed
+--> Processing Dependency: fuse-overlayfs >= 0.7 for package: docker-ce-rootless-extras-26.1.0-1.el7.x86_64
+--> Processing Dependency: slirp4netns >= 0.4 for package: docker-ce-rootless-extras-26.1.0-1.el7.x86_64
+---> Package docker-compose-plugin.x86_64 0:2.26.1-1.el7 will be installed
+---> Package libcgroup.x86_64 0:0.41-21.el7 will be installed
+--> Running transaction check
+---> Package fuse-overlayfs.x86_64 0:0.7.2-6.el7_8 will be installed
+--> Processing Dependency: libfuse3.so.3(FUSE_3.2)(64bit) for package: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+--> Processing Dependency: libfuse3.so.3(FUSE_3.0)(64bit) for package: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+--> Processing Dependency: libfuse3.so.3()(64bit) for package: fuse-overlayfs-0.7.2-6.el7_8.x86_64
+---> Package policycoreutils-python.x86_64 0:2.5-34.el7 will be installed
+--> Processing Dependency: setools-libs >= 3.3.8-4 for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libsemanage-python >= 2.5-14 for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: audit-libs-python >= 2.1.3-4 for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: python-IPy for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1(VERS_1.4)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1(VERS_1.2)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libapol.so.4(VERS_4.0)(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: checkpolicy for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libqpol.so.1()(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+--> Processing Dependency: libapol.so.4()(64bit) for package: policycoreutils-python-2.5-34.el7.x86_64
+---> Package slirp4netns.x86_64 0:0.4.3-4.el7_8 will be installed
+--> Running transaction check
+---> Package audit-libs-python.x86_64 0:2.8.5-4.el7 will be installed
+---> Package checkpolicy.x86_64 0:2.5-8.el7 will be installed
+---> Package fuse3-libs.x86_64 0:3.6.1-4.el7 will be installed
+---> Package libsemanage-python.x86_64 0:2.5-14.el7 will be installed
+---> Package python-IPy.noarch 0:0.75-6.el7 will be installed
+---> Package setools-libs.x86_64 0:3.3.8-4.el7 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================================================================================
+ Package                                  Arch                  Version                                   Repository                       Size
+================================================================================================================================================
+Installing:
+ containerd.io                            x86_64                1.6.31-3.1.el7                            docker-ce-stable                 35 M
+ docker-ce                                x86_64                3:26.1.0-1.el7                            docker-ce-stable                 27 M
+ docker-ce-cli                            x86_64                1:26.1.0-1.el7                            docker-ce-stable                 15 M
+Installing for dependencies:
+ audit-libs-python                        x86_64                2.8.5-4.el7                               base                             76 k
+ checkpolicy                              x86_64                2.5-8.el7                                 base                            295 k
+ container-selinux                        noarch                2:2.119.2-1.911c772.el7_8                 extras                           40 k
+ docker-buildx-plugin                     x86_64                0.14.0-1.el7                              docker-ce-stable                 14 M
+ docker-ce-rootless-extras                x86_64                26.1.0-1.el7                              docker-ce-stable                9.4 M
+ docker-compose-plugin                    x86_64                2.26.1-1.el7                              docker-ce-stable                 13 M
+ fuse-overlayfs                           x86_64                0.7.2-6.el7_8                             extras                           54 k
+ fuse3-libs                               x86_64                3.6.1-4.el7                               extras                           82 k
+ libcgroup                                x86_64                0.41-21.el7                               base                             66 k
+ libsemanage-python                       x86_64                2.5-14.el7                                base                            113 k
+ policycoreutils-python                   x86_64                2.5-34.el7                                base                            457 k
+ python-IPy                               noarch                0.75-6.el7                                base                             32 k
+ setools-libs                             x86_64                3.3.8-4.el7                               base                            620 k
+ slirp4netns                              x86_64                0.4.3-4.el7_8                             extras                           81 k
+
+Transaction Summary
+================================================================================================================================================
+Install  3 Packages (+14 Dependent packages)
+
+Total download size: 115 M
+Installed size: 406 M
+Is this ok [y/d/N]: y
+Downloading packages:
+(1/17): audit-libs-python-2.8.5-4.el7.x86_64.rpm                                                                         |  76 kB  00:00:01
+(2/17): container-selinux-2.119.2-1.911c772.el7_8.noarch.rpm                                                             |  40 kB  00:00:01
+(3/17): checkpolicy-2.5-8.el7.x86_64.rpm                                                                                 | 295 kB  00:00:01
+warning: /var/cache/yum/x86_64/7/docker-ce-stable/packages/docker-buildx-plugin-0.14.0-1.el7.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 621e9f35: NOKEY
+Public key for docker-buildx-plugin-0.14.0-1.el7.x86_64.rpm is not installed
+(4/17): docker-buildx-plugin-0.14.0-1.el7.x86_64.rpm                                                                     |  14 MB  00:00:06
+(5/17): containerd.io-1.6.31-3.1.el7.x86_64.rpm                                                                          |  35 MB  00:00:12
+(6/17): docker-ce-26.1.0-1.el7.x86_64.rpm                                                                                |  27 MB  00:00:08
+(7/17): docker-ce-cli-26.1.0-1.el7.x86_64.rpm                                                                            |  15 MB  00:00:04
+(8/17): docker-ce-rootless-extras-26.1.0-1.el7.x86_64.rpm                                                                | 9.4 MB  00:00:03
+(9/17): fuse-overlayfs-0.7.2-6.el7_8.x86_64.rpm                                                                          |  54 kB  00:00:00
+(10/17): libcgroup-0.41-21.el7.x86_64.rpm                                                                                |  66 kB  00:00:00
+(11/17): policycoreutils-python-2.5-34.el7.x86_64.rpm                                                                    | 457 kB  00:00:00
+(12/17): python-IPy-0.75-6.el7.noarch.rpm                                                                                |  32 kB  00:00:00
+(13/17): slirp4netns-0.4.3-4.el7_8.x86_64.rpm                                                                            |  81 kB  00:00:00
+(14/17): setools-libs-3.3.8-4.el7.x86_64.rpm                                                                             | 620 kB  00:00:00
+(15/17): fuse3-libs-3.6.1-4.el7.x86_64.rpm                                                                               |  82 kB  00:00:02
+(16/17): libsemanage-python-2.5-14.el7.x86_64.rpm                                                                        | 113 kB  00:00:01
+(17/17): docker-compose-plugin-2.26.1-1.el7.x86_64.rpm                                                                   |  13 MB  00:00:04
+------------------------------------------------------------------------------------------------------------------------------------------------
+Total                                                                                                           5.3 MB/s | 115 MB  00:00:21
+Retrieving key from https://download.docker.com/linux/centos/gpg
+Importing GPG key 0x621E9F35:
+ Userid     : "Docker Release (CE rpm) <docker@docker.com>"
+ Fingerprint: 060a 61c5 1b55 8a7f 742b 77aa c52f eb6b 621e 9f35
+ From       : https://download.docker.com/linux/centos/gpg
+Is this ok [y/N]: y
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : libcgroup-0.41-21.el7.x86_64                                                                                                1/17
+  Installing : audit-libs-python-2.8.5-4.el7.x86_64                                                                                        2/17
+  Installing : checkpolicy-2.5-8.el7.x86_64                                                                                                3/17
+  Installing : python-IPy-0.75-6.el7.noarch                                                                                                4/17
+  Installing : slirp4netns-0.4.3-4.el7_8.x86_64                                                                                            5/17
+  Installing : setools-libs-3.3.8-4.el7.x86_64                                                                                             6/17
+  Installing : docker-buildx-plugin-0.14.0-1.el7.x86_64                                                                                    7/17
+  Installing : docker-compose-plugin-2.26.1-1.el7.x86_64                                                                                   8/17
+  Installing : 1:docker-ce-cli-26.1.0-1.el7.x86_64                                                                                         9/17
+  Installing : fuse3-libs-3.6.1-4.el7.x86_64                                                                                              10/17
+  Installing : fuse-overlayfs-0.7.2-6.el7_8.x86_64                                                                                        11/17
+  Installing : libsemanage-python-2.5-14.el7.x86_64                                                                                       12/17
+  Installing : policycoreutils-python-2.5-34.el7.x86_64                                                                                   13/17
+  Installing : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch                                                                         14/17
+  Installing : containerd.io-1.6.31-3.1.el7.x86_64                                                                                        15/17
+  Installing : docker-ce-rootless-extras-26.1.0-1.el7.x86_64                                                                              16/17
+  Installing : 3:docker-ce-26.1.0-1.el7.x86_64                                                                                            17/17
+  Verifying  : libsemanage-python-2.5-14.el7.x86_64                                                                                        1/17
+  Verifying  : fuse3-libs-3.6.1-4.el7.x86_64                                                                                               2/17
+  Verifying  : docker-compose-plugin-2.26.1-1.el7.x86_64                                                                                   3/17
+  Verifying  : 3:docker-ce-26.1.0-1.el7.x86_64                                                                                             4/17
+  Verifying  : 1:docker-ce-cli-26.1.0-1.el7.x86_64                                                                                         5/17
+  Verifying  : docker-buildx-plugin-0.14.0-1.el7.x86_64                                                                                    6/17
+  Verifying  : docker-ce-rootless-extras-26.1.0-1.el7.x86_64                                                                               7/17
+  Verifying  : setools-libs-3.3.8-4.el7.x86_64                                                                                             8/17
+  Verifying  : slirp4netns-0.4.3-4.el7_8.x86_64                                                                                            9/17
+  Verifying  : 2:container-selinux-2.119.2-1.911c772.el7_8.noarch                                                                         10/17
+  Verifying  : python-IPy-0.75-6.el7.noarch                                                                                               11/17
+  Verifying  : checkpolicy-2.5-8.el7.x86_64                                                                                               12/17
+  Verifying  : policycoreutils-python-2.5-34.el7.x86_64                                                                                   13/17
+  Verifying  : audit-libs-python-2.8.5-4.el7.x86_64                                                                                       14/17
+  Verifying  : containerd.io-1.6.31-3.1.el7.x86_64                                                                                        15/17
+  Verifying  : fuse-overlayfs-0.7.2-6.el7_8.x86_64                                                                                        16/17
+  Verifying  : libcgroup-0.41-21.el7.x86_64                                                                                               17/17
+
+Installed:
+  containerd.io.x86_64 0:1.6.31-3.1.el7             docker-ce.x86_64 3:26.1.0-1.el7             docker-ce-cli.x86_64 1:26.1.0-1.el7
+
+Dependency Installed:
+  audit-libs-python.x86_64 0:2.8.5-4.el7     checkpolicy.x86_64 0:2.5-8.el7                  container-selinux.noarch 2:2.119.2-1.911c772.el7_8
+  docker-buildx-plugin.x86_64 0:0.14.0-1.el7 docker-ce-rootless-extras.x86_64 0:26.1.0-1.el7 docker-compose-plugin.x86_64 0:2.26.1-1.el7
+  fuse-overlayfs.x86_64 0:0.7.2-6.el7_8      fuse3-libs.x86_64 0:3.6.1-4.el7                 libcgroup.x86_64 0:0.41-21.el7
+  libsemanage-python.x86_64 0:2.5-14.el7     policycoreutils-python.x86_64 0:2.5-34.el7      python-IPy.noarch 0:0.75-6.el7
+  setools-libs.x86_64 0:3.3.8-4.el7          slirp4netns.x86_64 0:0.4.3-4.el7_8
+
+Complete!
+[root@dockernginx ~]# systemctl enable docker
+Created symlink from /etc/systemd/system/multi-user.target.wants/docker.service to /usr/lib/systemd/system/docker.service.
+[root@dockernginx ~]# systemctl start docker
+[root@dockernginx ~]# curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 15.4M  100 15.4M    0     0  4564k      0  0:00:03  0:00:03 --:--:-- 7378k
+[root@dockernginx ~]# chmod +x /usr/local/bin/docker-compose
+[root@dockernginx ~]#
+$ docker build -t ssviryakin09/nginx-custom:latest -f Dockerfile .
+[+] Building 0.0s (0/0)  docker:default
+[+] Building 2.4s (11/11) FINISHED                                                                                               docker:default
+ => [internal] load build definition from Dockerfile                                                                                       0.1s
+ => => transferring dockerfile: 983B                                                                                                       0.0s
+ => [internal] load metadata for docker.io/library/alpine:latest                                                                           1.6s
+ => [auth] library/alpine:pull token for registry-1.docker.io                                                                              0.0s
+ => [internal] load .dockerignore                                                                                                          0.1s
+ => => transferring context: 2B                                                                                                            0.0s
+ => [1/5] FROM docker.io/library/alpine:latest@sha256:c5b1261d6d3e43071626931fc004f70149baeba2c8ec672bd4f27761f8e1ad6b                     0.0s
+ => [internal] load build context                                                                                                          0.0s
+ => => transferring context: 31B                                                                                                           0.0s
+ => CACHED [2/5] RUN apk --update --no-cache add build-base         openssl-dev         pcre-dev         zlib-dev         wget             0.0s
+ => CACHED [3/5] RUN mkdir -p /tmp/src &&     cd /tmp/src &&     wget http://nginx.org/download/nginx-1.25.5.tar.gz &&     tar zxf nginx-  0.0s
+ => CACHED [4/5] RUN ln -sf /dev/stdout /var/log/nginx/access.log &&     ln -sf /dev/stderr /var/log/nginx/error.log                       0.0s
+ => CACHED [5/5] COPY index.html /usr/local/nginx/html/index.html                                                                          0.0s
+ => exporting to image                                                                                                                     0.3s
+ => => exporting layers                                                                                                                    0.0s
+ => => writing image sha256:d58b0d0155e589542993fe67b31c066ad7e84254fd1d77a91cdaae1cdfb0450f                                               0.0s
+ => => naming to docker.io/ssviryakin09/nginx-custom:latest                                                                                0.2s
+
+What's Next?
+  View a summary of image vulnerabilities and recommendations → docker scout quickview
+$ docker login
+Authenticating with existing credentials...
+Login Succeeded
+$ docker push ssviryakin09/nginx-custom:latest
+The push refers to repository [docker.io/ssviryakin09/nginx-custom]
+402f3283c987: Pushed
+62da2f01e6b6: Pushed
+a91a76435753: Pushed
+64c316d9e8f2: Pushed
+d4fc045c9e3a: Pushed
+latest: digest: sha256:69e2c632541daf89b8c0b8fc80b98c6b6e20395e13a3bc5851deb0939266ff9f size: 1365
+$ docker images
+REPOSITORY                  TAG       IMAGE ID       CREATED          SIZE
+nginx-custom                latest    d58b0d0155e5   24 minutes ago   247MB
+ssviryakin09/nginx-custom   latest    d58b0d0155e5   24 minutes ago   247MB
